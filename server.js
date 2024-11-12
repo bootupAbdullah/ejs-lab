@@ -50,7 +50,7 @@ const RESTAURANT = {
     ]
   }
   
-//declaring global var for menu
+// !! declaring global var for menu
 const fullMenu = RESTAURANT.menu
 
 
@@ -92,31 +92,57 @@ app.get('/', (req, res) => {
 // !! Excercise 2
 
 
+// !! excercise 2, level up: 
+//I go this far - ran into an issue on - how do I set up one template to pull frorma list when multiple indexes would neeed to be specified - don't want 
+//create a tempplate in home for each menu item - could use a loop but decided to move on to excercise 3 for now.
+let mains = []
+let desserts = []
+let sides = []
+
+
+fullMenu.forEach((menuItem) => {
+  if(menuItem.category === 'main') {
+    mains.push(menuItem)
+  } else if (menuItem.category === 'desserts') {
+    desserts.push(menuItem)
+  } else if (menuItem.category === 'sides') {
+    sides.push(menuItem)
+  }
+});
+
+
+
+
 // IIIIIIII CANNNNOOOOTTTT BELIEVE IT WORKED!!!!!! OH MY GOD!!!!!! LOLOL - that took a long I had to go back and watch the EJS turotial, build smaller things and scale up - 
 // the ejs page spits out the HTML but you have to define what the variables are on the server side - and it will only grab what you tell - it, so you can give as much infomration
 // as you want on the server side - I have the whole menu available - so the EJS has all of this to play with and then you go to the ejs file and use what you want - that works!
 
-let mains = []
-    let deserts = []
-    let sides = []
-    menu.forEach((item)) {
-        if(item.category === 'mains') {
-            mains.push(item)
-        } else if (item.category === 'desserts') {
-            deserts.push(item)
-        } else if (item.category === 'sides') {
-            sides.push(item)
-        }
-    }
-
-
-
-
+// !! excercise 2, send data to view 1-2 :
 app.get('/menu', (req, res) => {
     res.render('menu.ejs', {
-       menu: fullMenu,
-    //    menuByCategory = [mains, dishes, sides]
+       menu: fullMenu
+      //  mainDishes: mains,
+      //  desserts: desserts,
+      //  sideDishes: sides
     })
 })
+
+// !! even though the id is dynamic it cannot be renamed or reused into different variables
+// app.get('/menu/:category', (req, res) => {
+//   userSelectsMains = req.params.mains
+//   userSelectsDesserts = req.params.desserts
+//   userSelectsMains = req.params.sides
+//   res.render('category.ejs', {
+//     if(userSelectsMains) {
+
+//     }
+//   })
+// })
+
+app.get('/menu/:category', (req, res) => {
+  userInput = req.params.category
+})
+
+
 
 app.listen(3000);

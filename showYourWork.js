@@ -67,8 +67,51 @@ const menu = RESTAURANT.menu
 //     }
 // })
 
-menu.forEach((item) => {
-    if(item.category ===  'desserts'){
-        console.log(item)
-    }
-})
+// menu.forEach((item) => {
+//     if(item.category ===  'desserts'){
+//         console.log(item)
+//     }
+// })
+
+
+// menu.forEach((menuItem) => {
+//   if(menuItem.category === 'main') {
+//     let categoryMain = [menuItem]
+//     return categoryMain
+//   } else if (menuItem.category === 'desserts') {
+//     let categoryDesserts = [menuItem]
+//     return categoryDesserts
+//   } else if (menuItem.category === 'sides') {
+//     let categorySides = [menuItem]
+//     return categorySides
+//   }
+//   console.log(categoryMain) <-- will not capture value of var categoryMain here - cannot call it or console it -->
+// });
+
+// console.log(categoryMain) <-- will not work here either, both are outside of the scope of the forEach() -->
+
+let mains = []
+let desserts = []
+let sides = []
+
+
+menu.forEach((menuItem) => {
+  if(menuItem.category === 'mains') {
+    mains.push(menuItem)
+  } else if (menuItem.category === 'desserts') {
+    desserts.push(menuItem)
+  } else if (menuItem.category === 'sides') {
+    sides.push(menuItem)
+  }
+});
+
+
+// menu.forEach((menuItem) => {
+//   if(menuItem.category === 'mains') {
+//     for (const dishes of mains){
+
+//     }
+//   }
+// })
+
+console.log(mains)
