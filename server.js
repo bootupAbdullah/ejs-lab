@@ -50,6 +50,9 @@ const RESTAURANT = {
     ]
   }
   
+//declaring global var for menu
+const fullMenu = RESTAURANT.menu
+
 
 // !! Excercise 1. Create a homepage
 
@@ -68,7 +71,7 @@ const RESTAURANT = {
 // });
 
 
-// !! move the if statment for 'level-up' outisde of the render, change key pair to '=', this was trouble shooted with the aid of ChatGPT - answers were not asked for simply, asking is this possible? 'yes or no' etc. etc.
+// !! move the if statment for 'level-up' outisde of the render, change key pair to '=', this was trouble shooted with the aid of ChatGPT - answers were not asked for - simply asking, is this possible? 'yes or no' etc. etc.
 app.get('/', (req, res) => {
     if(RESTAURANT.isOpen){
         restaurantOpen = "Yes we are open!"
@@ -85,5 +88,35 @@ app.get('/', (req, res) => {
   });
   
 
+
+// !! Excercise 2
+
+
+// IIIIIIII CANNNNOOOOTTTT BELIEVE IT WORKED!!!!!! OH MY GOD!!!!!! LOLOL - that took a long I had to go back and watch the EJS turotial, build smaller things and scale up - 
+// the ejs page spits out the HTML but you have to define what the variables are on the server side - and it will only grab what you tell - it, so you can give as much infomration
+// as you want on the server side - I have the whole menu available - so the EJS has all of this to play with and then you go to the ejs file and use what you want - that works!
+
+let mains = []
+    let deserts = []
+    let sides = []
+    menu.forEach((item)) {
+        if(item.category === 'mains') {
+            mains.push(item)
+        } else if (item.category === 'desserts') {
+            deserts.push(item)
+        } else if (item.category === 'sides') {
+            sides.push(item)
+        }
+    }
+
+
+
+
+app.get('/menu', (req, res) => {
+    res.render('menu.ejs', {
+       menu: fullMenu,
+    //    menuByCategory = [mains, dishes, sides]
+    })
+})
 
 app.listen(3000);

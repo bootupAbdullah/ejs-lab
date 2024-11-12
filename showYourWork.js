@@ -48,4 +48,27 @@ const RESTAURANT = {
   }
   
 
-  console.log(RESTAURANT.name)
+const menu = RESTAURANT.menu
+
+// console.log(RESTAURANT.name)
+// console.log(menu)
+
+// console.log(menu[0].name)
+
+// menu.forEach((item) => {
+//     console.log(`Name: ${item.name}, Price: ${item.price}, Rating: ${item.rating}, Details: ${item.details}`)
+// })
+
+
+
+// menu.forEach((type) => {
+//     if(type.category === 'deserts'){
+//         console.log(type)
+//     }
+// })
+
+menu.forEach((item) => {
+    if(item.category ===  'desserts'){
+        console.log(item)
+    }
+})
